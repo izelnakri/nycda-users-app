@@ -1,14 +1,10 @@
-html
-  head
-    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
-  body
-    nav(class="navbar navbar-light bg-faded")
-      a(class="navbar-brand" href="/") User Information Application
+extends application.pug
 
-    .container
-      h1 All Users
-      hr
-      each user in users
-        .card.card-block
-          h4(class="card-title")= user.firstname + " " + user.lastname
-          p(class="card-text")= "Email: " + user.email
+block content
+  .container
+    h1 All Users
+    hr
+    each user in users
+      .card.card-block
+        h4(class="card-title")= user.firstname + " " + user.lastname
+        p(class="card-text")= "Email: " + user.email
