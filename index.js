@@ -25,10 +25,26 @@ app.post('/search', (request, response) => {
   response.redirect('/search/' + request.body.query);
 });
 
-app.get('/search/*', (request, response) => {
-  var results = searchUsers(request.params[0]);
+app.get('/search/:query', (request, response) => {
+  var results = searchUsers(request.params.query);
 
   response.render('search-result', { results: results });
+});
+
+app.get('/users/new', (request, response) => {
+  response.render('new-user');
+});
+
+app.post('/users', (request, response) => {
+  userStore.push(request.body);
+
+  response.redirect('/');
+
+  fs.writeFile('users.json', JSON.stringify(userStore), (error, data) => {
+    if (error) {
+      throw error;
+    }
+  });
 });
 
 app.listen(3000, () => {
