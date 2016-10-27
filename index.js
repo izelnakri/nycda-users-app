@@ -26,21 +26,25 @@ app.post('/search', (request, response) => {
 });
 
 app.get('/search/*', (request, response) => {
-  var foundUser = findUser(request.params[0]);
+  var results = searchUsers(request.params[0]);
 
-  response.render('search-result.pug', { user: foundUser });
+  response.render('search-result', { results: results });
 });
 
 app.listen(3000, () => {
   console.log('Web Server is running on port 3000');
 });
 
-function findUser(input) {
+function searchUsers(input) {
+  var results = [];
+
   for (i = 0; i < userStore.length; i++) {
     if (searchFirstName(input, userStore[i]) || searchLastName(input, userStore[i])) {
-      return userStore[i];
+      results.push(userStore[i]);
     }
   }
+
+  return results;
 }
 
 function searchFirstName(input, user) {
