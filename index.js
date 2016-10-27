@@ -40,20 +40,20 @@ app.listen(3000, () => {
 
 function findUser(input) {
   for (i = 0; i < userStore.length; i++) {
-    if (hasSearchResultForFirstName(input) || hasSearchResultForLastName(input)) {
+    if (searchFirstName(input, userStore[i]) || searchLastName(input, userStore[i])) {
       return userStore[i];
     }
   }
 }
 
-function hasSearchResultForFirstName(input) {
-  if (userStore[i].firstname.toLowerCase().includes(input.toLowerCase())) {
+function searchFirstName(input, user) {
+  if (user.firstname.toLowerCase().includes(input.toLowerCase())) {
     return true;
   }
 }
 
-function hasSearchResultForLastName(input) {
-  if (userStore[i].lastname.toLowerCase().includes(input.toLowerCase())) {
+function searchLastName(input, user) {
+  if (user.lastname.toLowerCase().includes(input.toLowerCase())) {
     return true;
   }
 }
