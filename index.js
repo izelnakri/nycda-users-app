@@ -22,13 +22,10 @@ app.get('/search', (request, response) => {
 });
 
 app.post('/search', (request, response) => {
-  console.log(request.body);
   response.redirect('/search/' + request.body.query);
 });
 
 app.get('/search/*', (request, response) => {
-  console.log(request.params[0]);
-  // make the actual search here!!:
   var foundUser = findUser(request.params[0]);
 
   response.render('search-result.pug', { user: foundUser });
@@ -47,13 +44,9 @@ function findUser(input) {
 }
 
 function searchFirstName(input, user) {
-  if (user.firstname.toLowerCase().includes(input.toLowerCase())) {
-    return true;
-  }
+  return user.firstname.toLowerCase().includes(input.toLowerCase());
 }
 
 function searchLastName(input, user) {
-  if (user.lastname.toLowerCase().includes(input.toLowerCase())) {
-    return true;
-  }
+  return user.lastname.toLowerCase().includes(input.toLowerCase());
 }
