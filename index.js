@@ -28,13 +28,32 @@ app.post('/search', (request, response) => {
 
 app.get('/search/*', (request, response) => {
   console.log(request.params[0]);
-  response.send('search a user with the query: ' + request.params[0]);
-
   // make the actual search here!!:
+  var foundUser = findUser(request.params[0]);
 
-  // if there is a found user we can render a template;
+  response.render('search-result.pug', { user: foundUser });
 });
 
 app.listen(3000, () => {
   console.log('Web Server is running on port 3000');
 });
+
+function findUser(input) {
+  for (i = 0; i < userStore.length; i++) {
+    if (hasSearchResultForFirstName(input) || hasSearchResultForLastName(input)) {
+      return userStore[i];
+    }
+  }
+}
+
+function hasSearchResultForFirstName(input) {
+  if (userStore[i].firstname.toLowerCase().includes(input.toLowerCase())) {
+    return true;
+  }
+}
+
+function hasSearchResultForLastName(input) {
+  if (userStore[i].lastname.toLowerCase().includes(input.toLowerCase())) {
+    return true;
+  }
+}
