@@ -14,11 +14,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'pug');
 
 app.get('/', (request, response) => {
-  response.render('index', { users: userStore });
+  response.render('users/index', { users: userStore });
 });
 
 app.get('/search', (request, response) => {
-  response.render('search');
+  response.render('search/new');
 });
 
 app.post('/search', (request, response) => {
@@ -28,11 +28,11 @@ app.post('/search', (request, response) => {
 app.get('/search/:query', (request, response) => {
   var results = searchUsers(request.params.query);
 
-  response.render('search-result', { results: results });
+  response.render('search/show', { results: results });
 });
 
 app.get('/users/new', (request, response) => {
-  response.render('new-user');
+  response.render('users/new');
 });
 
 app.post('/users', (request, response) => {
@@ -54,7 +54,7 @@ app.listen(3000, () => {
 function searchUsers(input) {
   var results = [];
 
-  for (i = 0; i < userStore.length; i++) {
+  for (var i = 0; i < userStore.length; i++) {
     if (searchFirstName(input, userStore[i]) || searchLastName(input, userStore[i])) {
       results.push(userStore[i]);
     }
