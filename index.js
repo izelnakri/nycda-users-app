@@ -8,7 +8,7 @@ const userRoutes = require('./routes/users'),
       searchRoutes = require('./routes/search');
 
 var app = express(),
-    userStore = JSON.parse(fs.readFileSync('users.json'));
+    userStore = require('./user-store');
 
 app.set('view engine', 'pug');
 
@@ -21,7 +21,7 @@ app.use('/users', userRoutes);
 app.use('/search', searchRoutes);
 
 app.get('/', (request, response) => {
-  response.render('users/index', { users: userStore });
+  response.render('users/index', { users: userStore.getUsers() });
 });
 
 app.listen(3000, () => {
