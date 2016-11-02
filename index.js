@@ -2,6 +2,7 @@ const express = require('express'),
       morgan = require('morgan'),
       bodyParser = require('body-parser'),
       fs = require('fs'),
+      chalk = require('chalk'),
       pug = require('pug');
 
 var likeCount = JSON.parse(fs.readFileSync('likes.json')).likes;
@@ -39,6 +40,17 @@ app.post('/like', (request, response) => {
     console.log('new likes data written to likes.json');
   });
 });
+
+app.get('/api/search/*', (req, res) => {
+  var results = userStore.searchUsers(req.params[0]);
+
+  console.log(chalk.green('RESULTS ARE:'));
+  console.log(results);
+  
+  res.json(results);
+});
+
+
 
 app.listen(3000, () => {
   console.log('Web Server is running on port 3000');

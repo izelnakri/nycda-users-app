@@ -1,0 +1,25 @@
+.in-application-search {
+  margin-bottom: 0px;
+}
+
+.in-application-search .form-control {
+  width: 400px;
+}
+
+.search-results {
+  padding-left: 0;
+  position: absolute;
+  z-index: 99999;
+  top: 47px;
+}
+
+.search-results li {
+  width: 400px;
+  height: 50px;
+  background: white;
+  list-style-type: none;
+  display: block;
+  text-align: center;
+  padding-top: 12px;
+  border: solid 1px lightgrey;
+}
