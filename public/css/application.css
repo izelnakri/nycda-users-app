@@ -1,0 +1,23 @@
+.in-application-search {
+  margin-bottom: 0px;
+}
+
+.in-application-search input.form-control {
+  width: 400px;
+}
+
+.in-application-search .in-application-search-results {
+  position: fixed;
+  list-style-type: none;
+  padding-left: 0;
+  top: 50px;
+  width: 400px;
+  z-index: 3;
+}
+
+.in-application-search .in-application-search-results li {
+  background: white;
+  border: solid 1px lightgrey;
+  padding: 5px 0 0 15px;
+  height: 40px;
+}

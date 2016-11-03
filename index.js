@@ -12,6 +12,8 @@ var app = express(),
 
 app.set('view engine', 'pug');
 
+app.use(express.static('public'));
+
 app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -1,10 +1,14 @@
 html
   head
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
-
+    link(rel="stylesheet" href="/css/application.css")
   body
     nav(class="navbar navbar-light bg-faded")
       a(class="navbar-brand" href="/") User Information Application
+      form(class="form-inline float-xs-left in-application-search")
+        input(class="form-control" type="text" placeholder="Search")
+        button(class="btn btn-outline-success" type="submit") Search
+        ul.in-application-search-results
       ul.nav.navbar-nav.float-xs-right
         li.nav-item
           a(class="navbar-text" href="/users/new") NEW USER
