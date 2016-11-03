@@ -26,6 +26,11 @@ app.get('/', (request, response) => {
   response.render('users/index', { users: userStore.getUsers() });
 });
 
+app.get('/api/search/:query', (request, response) => {
+  var results = userStore.searchUsers(request.params.query);
+  response.json(results);
+});
+
 app.listen(3000, () => {
   console.log('Web Server is running on port 3000');
 });
