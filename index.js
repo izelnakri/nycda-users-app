@@ -12,6 +12,8 @@ var app = express(),
 
 app.set('view engine', 'pug');
 
+app.use(express.static('public'));
+
 app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,6 +24,11 @@ app.use('/search', searchRoutes);
 
 app.get('/', (request, response) => {
   response.render('users/index', { users: userStore.getUsers() });
+});
+
+app.get('/api/search/:query', (request, response) => {
+  var results = userStore.searchUsers(request.params.query);
+  response.json(results);
 });
 
 app.listen(3000, () => {
